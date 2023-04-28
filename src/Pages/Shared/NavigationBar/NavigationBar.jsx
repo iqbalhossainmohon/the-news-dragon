@@ -6,7 +6,15 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 
 const NavigationBar = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () =>{
+        logOut()
+        .then()
+        .catch(error =>{
+            console.log(error);
+        })
+    }
 
     return (
         <Container>
@@ -26,7 +34,7 @@ const NavigationBar = () => {
                                 <FaUserCircle style={{ fontSize: '2rem' }}> </FaUserCircle>
                             }
                             {user ?
-                                <Button variant="dark">Logout</Button> :
+                                <Button onClick={handleLogOut} variant="dark">Logout</Button> :
                                 <Link to='/login'>
                                     <Button variant="dark">Login</Button>
                                 </Link>
